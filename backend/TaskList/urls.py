@@ -7,5 +7,6 @@ app_name = "tasklist"
 
 
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='home'),
+    path('tasks/', views.IndexView.as_view(), name='home'),
+    path('tasks/<int:pk>/', views.DetailView.as_view(), name='detail'),
 ]

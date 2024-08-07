@@ -28,3 +28,8 @@ from .serializers import TaskSerializer
 class IndexView(drfgenerics.ListCreateAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+
+class DetailView(drfgenerics.RetrieveUpdateDestroyAPIView):
+    model = Task
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer

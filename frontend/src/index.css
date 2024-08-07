@@ -17,22 +17,43 @@ body {
     padding: 10px;
 }
 
+.add-task-button {
+    width:100%;
+    font-size: 500%;
+    font-weight: 800;
+    background: radial-gradient(circle, #00ff2a, #83ff63);
+    border: 10px solid transparent; 
+    border-image: linear-gradient(to bottom, #035300, #009118) 1; 
+    
+}
+
+.add-task-button:hover{
+    background: radial-gradient(circle, #00440c, #83ff63);
+    cursor: pointer;
+}
+
 .task-box {
     position:relative;
     background: radial-gradient(circle, #00ff2a, #83ff63);
     border: 10px solid transparent; 
     border-image: linear-gradient(to bottom, #035300, #009118) 1; 
     border-radius: 10px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    padding: 20px; 
     margin-top: 5px;
     width: 100%; 
     margin: 5px auto; 
     box-sizing: border-box; 
-    padding: 20px; 
     color: white;
+}
+
+.task-box-main-row {
+    position:relative;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin: 0;
+    justify-content: center;
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 
@@ -44,6 +65,34 @@ body {
     width:80%;
     font-size: 200%;
     box-sizing: border-box; 
+    padding: 20px;
+}
+
+.task-name-edit {
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    color :rgb(107, 107, 107);
+    height:100%;
+    width:80%;
+    font-size: 200%;
+    box-sizing: border-box; 
+    padding: 20px;
+    background: none;
+    border: none;
+}
+
+.task-description {
+    font-weight: bold;
+    border: grey solid 2px;
+    border-radius: 5px;
+    background-color: #035300;
+    margin : 10%;
+    color :rgb(107, 107, 107);
+    height:100%;
+    width:80%;
+    font-size: 150%;
+    box-sizing: border-box; 
+    padding: 20px;
 
 }
 
@@ -57,8 +106,12 @@ body {
 
 }
 
-.task-box-footer{
-    position: absolute;
+.task-box-button:hover{
+    background: radial-gradient(circle, #00440c, #83ff63);
+    cursor: pointer;
+}
+
+.task-box-footer-collapsed{
     bottom: 0;
     width: 100%;
     text-align: center; 
@@ -66,9 +119,25 @@ body {
     background-color: #145c02;
     border: none;
     box-sizing: border-box; 
+
 }
 
-.task-box-footer span{
+.task-box-footer-collapsed span{
     transform:rotate(180deg);
+    display: inline-block;
 }
 
+.task-box-footer-expanded{
+    bottom: 0;
+    width: 100%;
+    text-align: center; 
+    color: white;
+    background-color: #145c02;
+    border: none;
+    box-sizing: border-box; 
+
+}
+
+.task-box-footer-expanded span{
+    display: inline-block;
+}
