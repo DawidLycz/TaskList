@@ -1,12 +1,102 @@
 body {
     background: radial-gradient(circle, #206b79, #000000);
-
     color: rgb(214, 214, 214);
     text-shadow: 
     -1px -1px 0 rgb(119, 119, 119),  
     1px -1px 0 rgb(119, 119, 119),
     -1px 1px 0 rgb(119, 119, 119),
-    1px 1px 0 rgb(119, 119, 119); /* Czarne obramowanie wokół tekstu */
+    1px 1px 0 rgb(119, 119, 119);
+}
+
+.navbar {
+    position: absolute;
+    background: radial-gradient(circle, #22dce9, #37757e);
+    width: 100%;
+    font-size: 200%;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding:2%;
+    margin: 0;
+    border : 8px solid;
+    border-image: linear-gradient(to bottom, #00a7b3, #98fffa) 1; 
+    box-sizing: border-box;
+}
+
+.navbar a{
+    color: rgb(214, 214, 214);
+    text-shadow: 
+    -1px -1px 0 rgb(119, 119, 119),  
+    1px -1px 0 rgb(119, 119, 119),
+    -1px 1px 0 rgb(119, 119, 119),
+    1px 1px 0 rgb(119, 119, 119);
+    text-decoration: none;
+    margin-right: 5%;
+}
+
+.register-box {
+    position: relative;
+    background: radial-gradient(circle, #3cafb8, #28545a);
+    border-radius: 5px;
+    border: 10px inset rgb(89, 198, 248);
+    margin: auto;
+    margin-top:5%;
+    margin-bottom:2%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 10px;
+    
+}
+
+.register-box input{
+    width:70%;
+    font-size: 200%;
+    background: radial-gradient(circle, #61edff, #007a8a);
+    margin-top:2%;
+    position:relative;
+    border: 5px solid; 
+    border-color: rgb(155, 190, 206);
+    margin: 1% auto; 
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 10px;
+    border-radius: 15px; 
+    color: rgb(214, 214, 214);
+    text-shadow: 
+    -1px -1px 0 rgb(119, 119, 119),  
+    1px -1px 0 rgb(119, 119, 119),
+    -1px 1px 0 rgb(119, 119, 119),
+    1px 1px 0 rgb(119, 119, 119);
+}
+
+.register-box input:focus{
+    background: radial-gradient(circle, #ffffff, #007a8a);
+    
+}
+
+.register-box h1{
+    font-size: 300%;
+}
+
+.register-box button{
+    margin-top: 5%;
+    width:100%;
+    font-size: 300%;
+    font-weight: 800;
+    border: 7px solid #00515e; 
+    background: radial-gradient(circle, #68e1ff, #326d65);
+    border-radius: 100px;
+    color: rgb(0, 83, 109);
+}
+
+.register-box button:hover{
+    color: rgb(214, 214, 214);
+    background: radial-gradient(circle, #00fff2, #326d65);
+    cursor: pointer;
+    border: 7px solid #83d1dd; 
+
 }
 
 .task-list-main {
@@ -24,7 +114,7 @@ body {
     padding: 10px;
 }
 
-.task-list-dependend {
+.task-list-dependent {
     position: relative;
     background: radial-gradient(circle, #3cafb8, #28545a);
     border: 5px inset rgb(0, 60, 88);
@@ -50,7 +140,7 @@ body {
     margin-bottom: 5%;
 }
 
-.task-list-dependend .task-list-header{
+.task-list-dependent .task-list-header{
     top: 0;
     width: 100%;
     text-align: center;
@@ -65,8 +155,8 @@ body {
 
 .task-list-header-undone {
     background: radial-gradient(circle, #61edff, #007a8a);
+    border-color: rgb(155, 190, 206);
     border: 10px solid rgb(155, 190, 206);
-
 }
 
 .task-list-header-done {
@@ -81,6 +171,7 @@ body {
     border: 10px solid #00434e; 
     background: radial-gradient(circle, #68e1ff, #326d65);
     border-radius: 100px;
+    margin-top: 2%;
 }
 
 .add-task-button:hover{
@@ -113,7 +204,6 @@ body {
 .task-box-main {
     position:relative;
     border: 10px solid; 
-    border-radius: 100px; 
     margin-top: 5px;
     width: 100%; 
     margin: 2% auto; 
@@ -125,7 +215,6 @@ body {
 .task-box-sub {
     position:relative;
     border: 5px solid ; 
-    border-radius: 10px; 
     margin-top: 5px;
     width: 100%; 
     margin: 5px auto; 
@@ -217,6 +306,25 @@ body {
     1px 1px 0 rgb(119, 119, 119);
 }
 
+.subtask-name-edit {
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    height:100%;
+    width:80%;
+    font-size: 150%;
+    box-sizing: border-box; 
+    padding: 20px;
+    margin-left: 0;
+    background: none;
+    border: none;
+    color: rgb(214, 214, 214);
+    text-shadow: 
+    -1px -1px 0 rgb(119, 119, 119),  
+    1px -1px 0 rgb(119, 119, 119),
+    -1px 1px 0 rgb(119, 119, 119),
+    1px 1px 0 rgb(119, 119, 119);
+}
+
 .task-description {
     font-weight: bold;
     border: grey solid 2px;
@@ -234,7 +342,7 @@ body {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;  
-    overflow: hidden; /* Ukrywa resztę tekstu */
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -262,6 +370,25 @@ body {
     1px 1px 0 rgb(119, 119, 119);
 }
 
+.subtask-description-edit {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    border: grey solid 2px;
+    border-radius: 5px;
+    background-color: #005353;
+    margin : 10%;
+    height: 100%;
+    width: 80%;
+    font-size: 150%;
+    box-sizing: border-box; 
+    padding: 20px;
+    color: rgb(214, 214, 214);
+    text-shadow: 
+    -1px -1px 0 rgb(119, 119, 119),  
+    1px -1px 0 rgb(119, 119, 119),
+    -1px 1px 0 rgb(119, 119, 119),
+    1px 1px 0 rgb(119, 119, 119);
+}
 .task-box-button{
 
     font-size: 200%;

@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import axios from './axios.js';
 import TaskList from './TaskList.jsx';
+import SubTaskList from './SubTaskList.jsx';
 
-function Task({ task, index, onDragStart, onDragOver, onDrop, setTasks, tasks }) {
+function Task({ task, index, onDragStart, onDragOver, onDrop, setTasks, tasks}) {
   const [expanded, setExpanded] = useState(false);
   const [editing, setEditing] = useState(false);
   const [currentTask, setCurrentTask] = useState(task);
+
   const [editedTitle, setEditedTitle] = useState(task.title);
   const [editedDescription, setEditedDescription] = useState(task.description);
 
+  const [subTasks, setSubTasks] = useState(currentTask.subtasks);
+  const hasSubTasks = currentTask.subtasks.length > 0;
+
   const doneMark = currentTask.complete ? '✅' : '❎';
-  const [dependendTasks, setDependendTasks] = useState(tasks.filter(t => t.depends.includes(task.id)));
+  const taskBoxClassMain = 'task-box-main';
+  const taskBoxClassDone = currentTask.complete ? 'task-box-completed' : 'task-box-incompleted';
+  const taskBoxClass = taskBoxClassMain + ' ' + taskBoxClassDone;
+  const footerText = expanded
+    ? '▲ WRAP ▲'
+    : '▼ EXPAND ▼';
+
   const toggleExpanded = (e) => {
     e.stopPropagation(); 
     setExpanded(prevExpanded => !prevExpanded);
@@ -24,7 +35,7 @@ function Task({ task, index, onDragStart, onDragOver, onDrop, setTasks, tasks })
 
   const deleteTask = async () => {
     try {
-      await axios.delete(`${task.id}/`);
+      await axios.delete(`tasks/${task.id}/`);
       setTasks(tasks.filter(t => t.id !== task.id));
     } catch (error) {
       console.error('Error deleting task:', error);
@@ -42,21 +53,29 @@ function Task({ task, index, onDragStart, onDragOver, onDrop, setTasks, tasks })
     }
     setEditing(prevEditing => !prevEditing);
   };
+  
   const addSubtask = async () => {
-    const newSubtask = { title: 'NOWE ZADANIE', description: 'MASZ BOJOWE ZADANIE!', complete: false, main: false, depends: [currentTask.id] };
+    const newSubtask = { title: 'NEW SUBTASK', description: 'NEW SUBTASK THAT YOU CAN EDIT', task: currentTask.id };
     try {
-      const response = await axios.post('', newSubtask);
-      setTasks([...tasks, response.data]);
-      setDependendTasks([...dependendTasks, response.data]);
-
+        const response = await axios.post('subtasks/', newSubtask);
+        setCurrentTask(response.data);
     } catch (error) {
-      console.error('Error adding subtask:', error);
+        console.error('Error adding subtask:', error);
     }
+};
+  const deleteSubTask = async (taskId) => {
+    try {
+      await axios.delete(`subtasks/${taskId}/`);
+      const updatedSubTasks = currentTask.subtasks.filter(t => t.id !== taskId);
+      setCurrentTask({ ...currentTask, subtasks: updatedSubTasks });
+    } catch (error) {
+      console.error('Error deleting subtask:', error);
+    } 
   };
 
   const saveTask = async (updatedTask) => {
     try {
-      await axios.put(`${updatedTask.id}/`, updatedTask);
+      await axios.put(`tasks/${updatedTask.id}/`, updatedTask);
       setTasks(tasks.map(t => t.id === task.id ? updatedTask : t));
     } catch (error) {
       console.error('Error saving task:', error);
@@ -69,12 +88,6 @@ function Task({ task, index, onDragStart, onDragOver, onDrop, setTasks, tasks })
     setEditedDescription(task.description);
   };
   
-  const taskBoxClassMain = currentTask.main ? 'task-box-main' : 'task-box-sub';
-  const taskBoxClassDone = currentTask.complete ? 'task-box-completed' : 'task-box-incompleted';
-  const taskBoxClass = taskBoxClassMain + ' ' + taskBoxClassDone;
-  const footerText = expanded
-    ? '▲ WRAP ▲'
-    : '▼ EXPAND ▼';
 
   if (editing) {
     return (
@@ -100,29 +113,26 @@ function Task({ task, index, onDragStart, onDragOver, onDrop, setTasks, tasks })
   } else {
     return (
       <>
-      <div
-        className={taskBoxClass}
-        draggable={!expanded}  
-        onDragStart={(e) => !expanded && onDragStart(e, index)}  
-        onDragOver={(e) => !expanded && onDragOver(e)}
-        onDrop={(e) => !expanded && onDrop(e, index)} 
-        
-      >
-        <div className='task-box-main-row'>
-          <span className='task-name'>{currentTask.title}</span>
-          <button onClick={toggleDone} className='task-box-button'>{doneMark}</button>
-          <button onClick={toggleEditing} className='task-box-button'>📝</button>
-          <button onClick={deleteTask} className='task-box-button'>🗑️</button>
+        <div
+          className={taskBoxClass}
+          draggable={!expanded}  
+          onDragStart={(e) => !expanded && onDragStart(e, index)}  
+          onDragOver={(e) => !expanded && onDragOver(e)}
+          onDrop={(e) => !expanded && onDrop(e, index)} 
+          
+        >
+          <div className='task-box-main-row'>
+            <span className='task-name'>{currentTask.title}</span>
+            <button onClick={toggleDone} className='task-box-button'>{doneMark}</button>
+            <button onClick={toggleEditing} className='task-box-button'>📝</button>
+            <button onClick={deleteTask} className='task-box-button'>🗑️</button>
+          </div>
+          {expanded ? <div onClick={e => e.stopPropagation()} className='task-description'>{currentTask.description}</div> : null}
+          {expanded && hasSubTasks && <SubTaskList deleteSubTask={deleteSubTask} parentTask={currentTask} taskList={currentTask.subtasks} setList={setSubTasks} />}
+
+          {expanded && <button onClick={addSubtask} className='add-side-task-button'>+ ADD SUBTASK +</button>}
+          <button onClick={toggleExpanded} className='add-side-task-button'>{footerText}</button>
         </div>
-        {expanded ? <div onClick={e => e.stopPropagation()} className='task-description'>{currentTask.description}</div> : null}
-        {dependendTasks.length > 0 && expanded ? <TaskList tasks={dependendTasks} setTasks={setDependendTasks} title='Zadania zależne' />: null}
-        {currentTask.main && expanded && <button onClick={addSubtask} className='add-side-task-button'>+ ADD SUBTASK +</button>}
-        <button onClick={toggleExpanded} className='add-side-task-button'>{footerText}</button>
-        
-      </div>
-
-
-
       </>
     );
   }
