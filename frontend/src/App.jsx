@@ -16,9 +16,7 @@ function App() {
   const token = localStorage.getItem('access_token');
   let user = {username: "Anonymous"};
   let isLoggedIn = false;
-  console.log(321)
   if (token) {
-    console.log(123)
     try{
     user = jwtDecode(token);
     isLoggedIn = true;
@@ -26,7 +24,6 @@ function App() {
       console.error("Error decoding token:", error);  
     }
   }
-  console.log(user)
   return (
     <Router>
       <Navbar user={user} isLoggedIn={isLoggedIn} />

@@ -39,7 +39,7 @@ function SubTaskList({ deleteSubTask, parentTask, taskList, setList }) {
 
   return (
     <div className={listClass}>
-      <h1 className={headerClass}>Zadania dodatkowe
+      <h1 className={headerClass}>Sub tasks
         <p>{counterText}</p>
       </h1>
       {tasks.map((task, index) => (

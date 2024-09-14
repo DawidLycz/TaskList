@@ -139,3 +139,4 @@ function Task({ task, index, onDragStart, onDragOver, onDrop, setTasks, tasks}) 
 }
 
 export default Task;
+

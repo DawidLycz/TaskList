@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from './axios.js';
+import { Link } from 'react-router-dom';
+
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -97,6 +99,8 @@ function Register() {
         <button onClick={handleSubmit} disabled={loading}>
           {loading ? 'Registering...' : 'Register'}
         </button>
+        <Link to="/login"><span>Already have account?</span></Link>
+
     </div>
   );
 }

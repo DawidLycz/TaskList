@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from './axios.js';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -54,6 +55,7 @@ function Login() {
       <button onClick={handleSubmit} disabled={loading}>
         {loading ? 'Loging in...' : 'Log in'}
       </button>
+      <Link to="/register"><span>Don't have account?</span></Link>
     </div>
   );
 }

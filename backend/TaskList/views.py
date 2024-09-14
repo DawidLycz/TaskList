@@ -65,11 +65,10 @@ class IndexView(drfgenerics.ListCreateAPIView):
     serializer_class = TaskListSerializer
 
     def get_queryset(self):
-        return TaskList.objects.all()
-        # user = self.request.user
-        # if not user.is_authenticated:
-        #     return TaskList.objects.none()
-        # return TaskList.objects.filter(author=user)
+        user = self.request.user
+        if not user.is_authenticated:
+            return TaskList.objects.none()
+        return TaskList.objects.filter(author=user)
     
 class TaskListDetailView(drfgenerics.RetrieveUpdateDestroyAPIView):
     model = TaskList
