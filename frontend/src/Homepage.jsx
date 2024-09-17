@@ -97,6 +97,25 @@ function Homepage({ user, isLoggedIn, setSelectedTaskList }) {
   function handleTaskListClick(listId) {
     navigate('/tasklist/' + listId);
   }
+
+  function demoButton() {
+    const logInIntoDemo = async () => {
+      console.log("działa")
+      try {
+        const response = await axios.post('api/token/', {
+          username: 'demo_user',
+          password: 'demouser123',
+        });
+        const {access, refresh} = response.data;
+        localStorage.setItem('access_token', access);
+        localStorage.setItem('refresh_token', refresh);
+        window.location.reload();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    return (<button className='demo-button' onClick={logInIntoDemo}>DEMO</button>)
+  }
   
   if (isLoggedIn) {
     return (
@@ -128,6 +147,7 @@ function Homepage({ user, isLoggedIn, setSelectedTaskList }) {
       <h1 className='home-page-title'>Task Hub</h1>
       {showDescription ? renderDescriptionContent() : renderDescriptionButton()}
       <button onClick={() => {navigate('/login');}} className='add-task-list-button'>Please log in to continue</button>
+      {demoButton()}
     </>
     );
 }
