@@ -88,6 +88,7 @@ function Task({ task, index, onDragStart, onDragOver, onDrop, setTasks, tasks}) 
     setEditedDescription(task.description);
   };
   
+  
 
   if (editing) {
     return (

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Homepage({ user, isLoggedIn, setSelectedTaskList }) {
   const [taskLists, setTaskLists] = useState([]);
-  const [showDescription, setShowDescription] = useState(true);
+  const [showDescription, setShowDescription] = useState(false);
   const nonEmpty = taskLists.length > 0;
   const navigate = useNavigate();
   const [editMode, setEditMode] = useState(false);
@@ -71,12 +71,12 @@ function Homepage({ user, isLoggedIn, setSelectedTaskList }) {
       <div className='home-page-description-box'>
       <p className='home-page-description-text'>What is Task Hub?</p>
       <p className='home-page-description-text'>
-      Task Hub is a powerful and intuitive task manager designed to help you stay organized and productive. 
-      Whether you're managing personal todos or collaborating on a team project, Task Hub provides an easy-to-use interface for creating, organizing, and tracking tasks. 
-      With customizable task lists, real-time updates, and a focus on simplicity, you can stay on top of your workload and achieve your goals effortlessly. 
-      Organize your life, prioritize your tasks, and get more done with Task Hub.
-     </p>
-     <button onClick={() => setShowDescription(false)}>❌</button>
+        Task Hub is a powerful and intuitive task manager designed to help you stay organized and productive. 
+        Whether you're managing personal todos or collaborating on a team project, Task Hub provides an easy-to-use interface for creating, organizing, and tracking tasks. 
+        With customizable task lists, real-time updates, and a focus on simplicity, you can stay on top of your workload and achieve your goals effortlessly. 
+        Organize your life, prioritize your tasks, and get more done with Task Hub.
+      </p>
+     <button onClick={() => setShowDescription(false)}>🗙</button>
     </div>
     )
   }

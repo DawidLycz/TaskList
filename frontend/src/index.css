@@ -103,6 +103,7 @@ body {
     border: 5px solid #83d1dd;
     color: rgb(214, 214, 214);
 }
+
 .add-task-list-button{
     margin: none;
     position: fixed;
@@ -118,7 +119,6 @@ body {
     color: rgb(0, 83, 109);
     box-sizing: border-box;
 }
-
 
 
 .home-page-description-box {
@@ -140,11 +140,10 @@ body {
     position: absolute;
     right:0%;
     top:0%;
-    width:8%;
     font-size: 200%;
     background: radial-gradient(circle, #3bd2dd, #286870);
     color: rgb(0, 83, 109);
-
+    padding: none;
     border: none;
     border-left: 8px solid  #00a7b3;
     border-bottom: 8px solid  #00a7b3;
@@ -293,7 +292,7 @@ body {
 
 
 .edit-mode-content{
-    position: absolute;
+    position: fixed;
     left:0;
     top: 0;
     width: 100%;
@@ -505,6 +504,7 @@ body {
 }
 
 .task-list-main .task-list-header{
+    position: relative;
     top: 0;
     width: 100%;
     text-align: center;
@@ -517,6 +517,7 @@ body {
 }
 
 .task-list-dependent .task-list-header{
+    position: relative;
     top: 0;
     width: 100%;
     text-align: center;
@@ -527,6 +528,29 @@ body {
     font-size: 150%;
     box-sizing: border-box;
     margin-bottom: 5%;
+}
+
+.task-list-main .task-list-header button{
+    position: absolute;
+    top:0;
+    right: 0;
+    font-size: 100%;
+    font-weight: 10;
+    border:none;
+    background :none;
+}
+
+.task-list-main .task-list-header button:hover{
+    animation: swing-animation 1.5s infinite;
+    cursor: pointer;
+}
+
+.task-list-main .task-list-header p span{
+    display: none;
+}
+
+.task-list-main .task-list-header:hover p span{
+    display: block;
 }
 
 .task-list-header-undone {
@@ -729,7 +753,7 @@ body {
 }
 
 .task-description-edit {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: bold;
     border: grey solid 2px;
     border-radius: 5px;
@@ -749,7 +773,7 @@ body {
 }
 
 .subtask-description-edit {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: bold;
     border: grey solid 2px;
     border-radius: 5px;

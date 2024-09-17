@@ -30,6 +30,7 @@ function TaskListSite({ user, isLoggedIn, mainList }) {
       isLoggedIn={isLoggedIn}
       mainList={mainList}
       taskList={taskList}
+      setTaskList={setTaskList}
     />
   );
 }

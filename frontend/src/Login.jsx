@@ -20,6 +20,7 @@ function Login() {
       setServerResponse('Login successful!');
       window.location.href = '/';
     } catch (error) {
+      console.log(response)
       if (error.response) {
         setServerResponse(error.response.data.error || 'An error occurred during login.');
       } else {

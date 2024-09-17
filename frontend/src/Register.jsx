@@ -100,7 +100,6 @@ function Register() {
           {loading ? 'Registering...' : 'Register'}
         </button>
         <Link to="/login"><span>Already have account?</span></Link>
-
     </div>
   );
 }
