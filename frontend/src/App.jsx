@@ -7,7 +7,7 @@ import About from './About.jsx';
 import Navbar from './Navbar.jsx';
 import Register from './Register.jsx';
 import Login from './Login.jsx';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 
 
