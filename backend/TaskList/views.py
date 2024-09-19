@@ -60,6 +60,10 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 # _________________________________________________
 
+class TestView(generic.View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('Website is operational', status=200)
+
 class IndexView(drfgenerics.ListCreateAPIView):
 
     serializer_class = TaskListSerializer
