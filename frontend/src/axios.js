@@ -2,7 +2,7 @@ import axios from 'axios';
 import {jwtDecode} from 'jwt-decode';
 
 const instance = axios.create({
-  baseURL: 'http://dawidlycz3.pythonanywhere.com//',
+  baseURL: 'https://dawidlycz3.pythonanywhere.com//',
 });
 
 const refreshToken = async () => {

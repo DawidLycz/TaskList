@@ -162,23 +162,26 @@ body {
     font-size: 130%;
 }
 
+
 .list-container {
     display: flex;
-    flex-wrap: wrap;
-    margin-bottom:10%;
+    flex-wrap: wrap; /* Umożliwia zawijanie elementów */
+    align-items: flex-start; /* Ustawia wszystkie elementy przy górnej krawędzi */
+    justify-content: center; /* Wyśrodkowuje elementy w poziomie */
+    gap: 10px; /* Dodaje odstępy między elementami */
 }
 
 .task-list-mini {
-    position: relative;
     background: radial-gradient(circle, #3bd2dd, #286870);
     border: 5px inset rgb(0, 60, 88);
     border-radius: 25px;
-    margin: auto;
-    margin-bottom:2%;
+    margin: 10px; /* Zwiększony margines dla odstępów */
     width: 30%;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
+    justify-content: flex-start; /* Zawartość elementu zaczyna się od góry */
+    transition: all 0.3s ease; /* Płynna zmiana rozmiaru */
 }
 
 .task-list-mini:hover{
@@ -187,9 +190,16 @@ body {
 
 .task-list-mini h1{
     font-size: 140%;
-    margin: 3%;
+    margin: 2%;
     text-align: center;
     overflow: hidden;
+    display: -webkit-box; /* Użycie display box dla elastyczności */
+    -webkit-line-clamp: 2; /* Ogranicz do 2 linii */
+    -webkit-box-orient: vertical; /* Ustaw orientację boxu na pionową */
+    overflow: hidden; /* Ukryj nadmiar tekstu */
+    text-overflow: ellipsis; /* Dodaj wielokropek na końcu, jeśli tekst się nie mieści */
+    height: 2.5em; /* Ustal wysokość na wysokość dokładnie 2 linii, przy typowej wysokości linii np. 1.25em */
+    line-height: 1.25em; /* Ustal wysokość linii */
 }
 
 .task-list-mini-bar{
@@ -213,7 +223,6 @@ body {
 .task-list-mini-bar-button-left:hover{
     background: radial-gradient(circle, #62f5ff, #006f77);
     cursor: pointer;
-
 }
 
 .task-list-mini-bar-button-right{
@@ -832,14 +841,15 @@ body {
     border-radius: 100px;
     color: rgb(0, 83, 109);
     box-sizing: border-box;
-    left:5%;
+    left:2%;
     top:27%;
-    width:8%;
+    width:15%;
     padding:20px;
 }
 
 
 .demo-button:hover{
+    
     background: radial-gradient(circle, #00fff2, #326d65);
     cursor: pointer;
     border: 5px solid #83d1dd;

@@ -60,9 +60,6 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 # _________________________________________________
 
-class TestView(generic.View):
-    def get(self, request, *args, **kwargs):
-        return HttpResponse('Website is operational', status=200)
 
 class IndexView(drfgenerics.ListCreateAPIView):
 
@@ -108,12 +105,9 @@ class SubTaskListView(drfgenerics.ListCreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
-
         task_id = serializer.validated_data['task'].id
         task = Task.objects.get(id=task_id)
-
         task_serializer = TaskSerializer(task)
-
         return Response(task_serializer.data, status=status.HTTP_201_CREATED)
 
 class SubTaskDetailView(drfgenerics.RetrieveUpdateDestroyAPIView):

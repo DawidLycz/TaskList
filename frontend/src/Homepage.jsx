@@ -29,7 +29,7 @@ function Homepage({ user, isLoggedIn, setSelectedTaskList }) {
   const addTaskList = async () => {
     const newTaskList = { 
       title: 'NEW TASK LIST', 
-      description: 'YOU HAVE SOME TASK TO DO', 
+      description: 'TASK DESCRIPTION', 
       author: user.user_id,
     };
     try {
@@ -100,7 +100,6 @@ function Homepage({ user, isLoggedIn, setSelectedTaskList }) {
 
   function demoButton() {
     const logInIntoDemo = async () => {
-      console.log("działa")
       try {
         const response = await axios.post('api/token/', {
           username: 'demo_user',
