@@ -7,7 +7,7 @@ function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [serverResponse, setServerResponse] = useState('');
-  const [registerSuccess, setRegisterSuccess] = useState(false);
+  const [registerSuccess, setRegisterSuccess] = useState(true);
   const [loading, setLoading] = useState(false);
 
   function verifyPassword() {
@@ -64,15 +64,11 @@ function Register() {
     }
   }
 
-  function homepage() {
-    window.location.href = '/';
-  }
-
   if (registerSuccess) {
     return (
       <div className='register-box'>
         <h1>Registration Successful</h1>
-        <button onClick={homepage}>HOMEPAGE</button>
+        <Link to='/'><button className='register-box-button'>HOMEPAGE</button></Link>
       </div>
     );
   }

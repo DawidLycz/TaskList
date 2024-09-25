@@ -165,23 +165,23 @@ body {
 
 .list-container {
     display: flex;
-    flex-wrap: wrap; /* Umożliwia zawijanie elementów */
-    align-items: flex-start; /* Ustawia wszystkie elementy przy górnej krawędzi */
-    justify-content: center; /* Wyśrodkowuje elementy w poziomie */
-    gap: 10px; /* Dodaje odstępy między elementami */
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
 }
 
 .task-list-mini {
     background: radial-gradient(circle, #3bd2dd, #286870);
     border: 5px inset rgb(0, 60, 88);
     border-radius: 25px;
-    margin: 10px; /* Zwiększony margines dla odstępów */
+    margin: 10px;
     width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Zawartość elementu zaczyna się od góry */
-    transition: all 0.3s ease; /* Płynna zmiana rozmiaru */
+    justify-content: flex-start;
+    transition: all 0.3s ease; 
 }
 
 .task-list-mini:hover{
@@ -193,13 +193,13 @@ body {
     margin: 2%;
     text-align: center;
     overflow: hidden;
-    display: -webkit-box; /* Użycie display box dla elastyczności */
-    -webkit-line-clamp: 2; /* Ogranicz do 2 linii */
-    -webkit-box-orient: vertical; /* Ustaw orientację boxu na pionową */
-    overflow: hidden; /* Ukryj nadmiar tekstu */
-    text-overflow: ellipsis; /* Dodaj wielokropek na końcu, jeśli tekst się nie mieści */
-    height: 2.5em; /* Ustal wysokość na wysokość dokładnie 2 linii, przy typowej wysokości linii np. 1.25em */
-    line-height: 1.25em; /* Ustal wysokość linii */
+    display: -webkit-box; 
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 2.5em; 
+    line-height: 1.25em; 
 }
 
 .task-list-mini-bar{
@@ -446,7 +446,11 @@ body {
     font-size: 300%;
 }
 
-.register-box button{
+.register-box a {
+    width:100%;
+}
+
+.register-box-button{
     margin-top: 5%;
     width:100%;
     font-size: 300%;
@@ -457,7 +461,7 @@ body {
     color: rgb(0, 83, 109);
 }
 
-.register-box button:hover{
+.register-box-button:hover{
     color: rgb(214, 214, 214);
     background: radial-gradient(circle, #00fff2, #326d65);
     cursor: pointer;
@@ -747,10 +751,6 @@ body {
     font-size: 150%;
     box-sizing: border-box; 
     padding: 20px;
-    /* overflow: hidden;
-    overflow-wrap: normal;
-    white-space: normal; */
-
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;  
