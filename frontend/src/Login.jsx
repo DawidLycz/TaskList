@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import axios from './axios.js';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [serverResponse, setServerResponse] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   
-
   async function handleSubmit() {
     setLoading(true);
     try {
@@ -18,11 +19,11 @@ function Login() {
       localStorage.setItem('access_token', access);
       localStorage.setItem('refresh_token', refresh);
       setServerResponse('Login successful!');
-      window.location.href = '/';
+      navigate('/');
+      window.location.reload(false)
     } catch (error) {
-      console.log(response)
       if (error.response) {
-        setServerResponse(error.response.data.error || 'An error occurred during login.');
+        setServerResponse('Invalid username or password.');
       } else {
         setServerResponse('An unexpected error occurred.');
       }
@@ -52,9 +53,10 @@ function Login() {
         }}>
       </input>
       <p>{serverResponse}</p>
-      <button onClick={handleSubmit} disabled={loading}>
+      <button className='register-box-button' onClick={handleSubmit} disabled={loading}>
         {loading ? 'Loging in...' : 'Log in'}
       </button>
+      
       <Link to="/register"><span>Don't have account?</span></Link>
     </div>
   );

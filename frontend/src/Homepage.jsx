@@ -12,6 +12,8 @@ function Homepage({ user, isLoggedIn, setSelectedTaskList }) {
   const [editingTaskList, setEditingTaskList] = useState(null);
   const [newTitle, setNewTitle] = useState('');
   const [newDescription, setNewDescription] = useState('');
+  const addTaskListButtonClass = nonEmpty ? 'add-task-list-button' : 'add-task-list-button-empty-ver'; 
+  const addTaskLIstButtonText = nonEmpty ? 'Add task list' : 'Your do not have currenty any task lists to accomplish. Click this button to add one now!';
 
 
   useEffect(() => {
@@ -134,8 +136,8 @@ function Homepage({ user, isLoggedIn, setSelectedTaskList }) {
           />
         ))}
       </div>
-      ) : <h1 className='home-page-title' style={{textAlign: 'center', fontSize: '300%'}}>There is no task list yet. Click button to add one.</h1>} 
-      <button onClick={addTaskList} className='add-task-list-button'>Add new task list</button>
+      ) : null} 
+      <button onClick={addTaskList} className={addTaskListButtonClass}>{addTaskLIstButtonText}</button>
       {editMode ? renderEditModeConentent() : null}
     </>
   );
@@ -145,7 +147,9 @@ function Homepage({ user, isLoggedIn, setSelectedTaskList }) {
     <>
       <h1 className='home-page-title'>Task Hub</h1>
       {showDescription ? renderDescriptionContent() : renderDescriptionButton()}
-      <button onClick={() => {navigate('/login');}} className='add-task-list-button'>Please log in to continue</button>
+      <div style={{alignItems: 'center', display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
+        <button onClick={() => {navigate('/login');}} className='add-task-list-button-empty-ver'>Please log in to continue</button>
+      </div>
       {demoButton()}
     </>
     );

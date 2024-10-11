@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import axios from './axios.js';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [serverResponse, setServerResponse] = useState('');
-  const [registerSuccess, setRegisterSuccess] = useState(true);
+  const [registerSuccess, setRegisterSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   function verifyPassword() {
     if (username === '') {
@@ -50,9 +52,11 @@ function Register() {
     try {
       const response = await axios.post('api/register/', { username, password });
       setServerResponse('Registration successful!');
-      setRegisterSuccess(true);
+      // setRegisterSuccess(true);
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
+      navigate('/');
+      window.location.reload(false)
     } catch (error) {
       if (error.response) {
         setServerResponse(error.response.data.error || 'An error occurred during registration.');
@@ -92,7 +96,7 @@ function Register() {
           }}>
         </input>
         <p>{serverResponse}</p>
-        <button onClick={handleSubmit} disabled={loading}>
+        <button className='register-box-button' onClick={handleSubmit} disabled={loading}>
           {loading ? 'Registering...' : 'Register'}
         </button>
         <Link to="/login"><span>Already have account?</span></Link>
